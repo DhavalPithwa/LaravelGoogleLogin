@@ -67,16 +67,23 @@
         <div class="flex-center position-ref full-height">
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/profile') }}">Profile</a>
+                        <a href="{{ url('/') }}">Home</a>
                         <a href="{{ url('/logout') }}">Logout</a>
-                    @else
-                        <a href="{{ url('/google_login') }}">Login With Google</a>
                     @endauth
                 </div>
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome {{$user->name ?? " "}} To Assets Managemant Sysytem
+                    {{$user->id}}
+                </div>
+                <div class="title m-b-md">
+                    {{$user->name}}
+                </div>
+                <div class="title m-b-md">
+                    {{$user->email}}
+                </div>
+                <div class="title m-b-md">
+                    {{$user->google_id}}
                 </div>
 <!-- 
                 <div class="links">

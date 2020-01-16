@@ -12,17 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = Auth::user();
+    return view('welcome', ["user" => $user]);
 });
 Route::get('/google_login', 'googleauthct@providers');
 Route::get('/callback/google', 'googleauthct@callBack');
-Route::get('/home', function () {
-    echo "success";
-});
-Route::get('/logout', function () {
-    Auth::logout();
-    return view('welcome');
-});
+Route::get('/logout', 'googleauthct@logout');
 Route::get('/profile', function () {
+    $user = Auth::user();
+    if (!$user) {
+        return redirect()->to('/');
+    } else {
+        return view('profile', ['user' => $user]);
+    }
+});
+Route::get('/user', function () {
     return Auth::user();
 });

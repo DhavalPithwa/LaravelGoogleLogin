@@ -30,9 +30,16 @@ class googleauthct extends Controller
                 $u->save();
                 Auth::loginUsingId($u->id);
             }
-            return redirect()->to('/home');
+            //$luser = Auth::user();
+            //return view('welcome', ['user'=>$luser]);
+            return redirect()->to('/');
         } catch (Exception $e) {
              echo $e;
         }
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->to('/');
     }
 }
