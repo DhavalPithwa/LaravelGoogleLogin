@@ -18,14 +18,7 @@ Route::get('/', function () {
 Route::get('/google_login', 'googleauthct@providers');
 Route::get('/callback/google', 'googleauthct@callBack');
 Route::get('/logout', 'googleauthct@logout');
-Route::get('/profile', function () {
-    $user = Auth::user();
-    if (!$user) {
-        return redirect()->to('/');
-    } else {
-        return view('profile', ['user' => $user]);
-    }
-});
+Route::get('/profile', 'googleauthct@profile');
 Route::get('/user', function () {
     return Auth::user();
 });

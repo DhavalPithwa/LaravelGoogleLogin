@@ -7,6 +7,7 @@ use Auth;
 use Socialite;
 use App\User;
 use Exception;
+use Cache;
 
 class googleauthct extends Controller
 {
@@ -30,8 +31,6 @@ class googleauthct extends Controller
                 $u->save();
                 Auth::loginUsingId($u->id);
             }
-            //$luser = Auth::user();
-            //return view('welcome', ['user'=>$luser]);
             return redirect()->to('/');
         } catch (Exception $e) {
              echo $e;
@@ -40,6 +39,19 @@ class googleauthct extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->to('/');
+        Cache::flush();
+        return redirect()->to('/profile');
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+
+        //echo $user;
+        if (!$user) {
+            return redirect()->to('/');
+        } else {
+            return view('profile', ['user' => $user]);
+        }
     }
 }

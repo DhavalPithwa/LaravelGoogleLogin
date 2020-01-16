@@ -73,10 +73,10 @@
                         <a href="{{ url('/google_login') }}">Login With Google</a>
                     @endauth
                 </div>
-
+            
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome {{$user->name ?? " "}} To Assets Managemant Sysytem
+                    Welcome <b>{{$user->name ?? " "}}</b> To <br> Assets Managemant Sysytem
                 </div>
 <!-- 
                 <div class="links">
